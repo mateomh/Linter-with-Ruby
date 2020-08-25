@@ -43,10 +43,26 @@ end
 
 current_file.rewind
 current_file.each_with_index do |text, line|
-  text_array = text.chars
+  text_array = text.chomp.chars
   if text_array.include?(':')
     if text_array[text_array.index(':')+1] != ' '
       results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> No space after colon\n"
+    end
+  end
+end
+
+# Checks for colors lower case
+
+current_file.rewind
+current_file.each_with_index do |text, line|
+  pound_index = text.index('#')
+  if pound_index != nil
+    semicolon_index = text.index(';')
+    if semicolon_index != nil
+      color = text[pound_index...semicolon_index]
+      if color != color.downcase
+        results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Colors should be all lower case\n"
+      end
     end
   end
 end

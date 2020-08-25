@@ -38,3 +38,15 @@ current_file.each_with_index do |text, line|
     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Empty line detected\n"
   end
 end
+
+# Checks for the space after the property
+
+current_file.rewind
+current_file.each_with_index do |text, line|
+  text_array = text.chars
+  if text_array.include?(':')
+    if text_array[text_array.index(':')+1] != ' '
+      results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> No space after colon\n"
+    end
+  end
+end

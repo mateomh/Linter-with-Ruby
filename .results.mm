@@ -36,3 +36,20 @@ File: styles.css Line: 176 ====> Empty line detected
 File: styles.css Line: 180 ====> Empty line detected
 File: styles.css Line: 182 ====> Empty line detected
 File: styles.css Line: 191 ====> Empty line detected
+File: styles.css Line: 9 ====> No space after colon
+File: styles.css Line: 19 ====> No space after colon
+File: styles.css Line: 34 ====> No space after colon
+File: styles.css Line: 55 ====> No space after colon
+File: styles.css Line: 63 ====> No space after colon
+File: styles.css Line: 64 ====> No space after colon
+File: styles.css Line: 76 ====> No space after colon
+File: styles.css Line: 77 ====> No space after colon
+File: styles.css Line: 101 ====> No space after colon
+File: styles.css Line: 111 ====> No space after colon
+File: styles.css Line: 118 ====> No space after colon
+File: styles.css Line: 124 ====> No space after colon
+File: styles.css Line: 125 ====> No space after colon
+File: styles.css Line: 158 ====> No space after colon
+File: styles.css Line: 159 ====> No space after colon
+File: styles.css Line: 174 ====> No space after colon
+File: styles.css Line: 193 ====> No space after colon

@@ -66,3 +66,15 @@ current_file.each_with_index do |text, line|
     end
   end
 end
+
+# Checks for semicolon missing
+
+current_file.rewind
+current_file.each_with_index do |text, line|
+  if text.index(';').nil? && text.index('{').nil? && text.index('}').nil?
+    p text.chars
+    if !text.chomp.chars.all?(' ')
+      results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing semicolor\n"
+    end
+  end 
+end

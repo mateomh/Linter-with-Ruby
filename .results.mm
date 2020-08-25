@@ -53,3 +53,7 @@ File: styles.css Line: 159 ====> No space after colon
 File: styles.css Line: 160 ====> No space after colon
 File: styles.css Line: 175 ====> No space after colon
 File: styles.css Line: 194 ====> No space after colon
+File: styles.css Line: 3 ====> Missing semicolor
+File: styles.css Line: 6 ====> Missing semicolor
+File: styles.css Line: 74 ====> Missing semicolor
+File: styles.css Line: 155 ====> Missing semicolor

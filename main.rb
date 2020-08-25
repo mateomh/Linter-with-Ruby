@@ -72,9 +72,18 @@ end
 current_file.rewind
 current_file.each_with_index do |text, line|
   if text.index(';').nil? && text.index('{').nil? && text.index('}').nil?
-    p text.chars
     if !text.chomp.chars.all?(' ')
       results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing semicolor\n"
     end
+  end 
+end
+
+# Checks for space between the comment start and the content
+
+current_file.rewind
+current_file.each_with_index do |text, line|
+  comment_index = text.index('/')
+  if !comment_index.nil? && text[comment_index+2] != ' '
+    results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space after between /* and content\n"
   end 
 end

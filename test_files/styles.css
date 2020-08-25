@@ -1,0 +1,195 @@
+body{ 
+    margin: 0px;
+    background-color: whitesmoke;
+}
+
+/*================= NAVBAR SECTION =================*/
+.flex-container {
+    display: flex;
+    flex-direction:row;
+}
+
+.flex-navbar{
+    align-items: center;
+    justify-content: center;
+    align-content: stretch; 
+}
+
+#navbar{
+    position:fixed;
+    top: 0;
+    background-color: cornflowerblue;
+    height: 6vmin;
+    width: 100%;
+    background-color: white;
+
+
+
+}
+#navbar p{
+    padding: 0px;
+    margin: 0px;
+}
+.logo{
+    flex-basis:20%;
+}
+.logo img{
+    padding: 8px;
+    max-width: 10vmin;
+}
+.search{
+    margin: 0 auto 0 auto;
+    text-align: center;
+    width: 50%;
+    flex-basis: 50%;
+}
+.searchicon{
+
+    max-width: 1.5vmin;
+
+}
+#search{
+    margin-right: -5px;
+}
+.appicon{
+    display:inline-block;
+    width: 3vmin;
+    margin: 10px;
+
+}
+
+.buttons{
+    display: flex;
+    flex-basis:30%;
+    text-align:right;
+    justify-content: flex-end;
+}
+input#search {
+    width: 250px;
+}
+
+
+
+/*================= CONTENT SECTION ================*/
+#content{
+
+    position:absolute;
+    width:63%;
+    top: 6vmin;
+    height: 150vmin;
+    z-index: -1;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 2%;
+
+}
+
+.video{
+
+    min-width: 100%;
+    min-height: 55vmin;
+
+}
+.video-title p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.icon{
+
+    width: 20px;
+    height:25px;
+    margin-top: -5px;
+
+}
+ .social-buttons a{
+    margin: 0 2% 0 2%;
+ }
+
+.view-info{
+    flex-basis: 30%;
+    display:flex;
+    color: gray;
+    font-size: 15px;
+}
+
+.social-buttons{
+    flex-basis: 70%;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.avatar{
+    width:30px;
+    height:30px;
+    border-radius: 100%;
+}
+
+.user-info h3{
+    display: inline-block;
+    margin-left: 5px;
+}
+button.subscribe {
+    background-color: red;
+    border: none;
+    width: 130px;
+    height: 40px;
+    color: white;
+    padding: 0px;
+}
+
+.user-info div{
+    width: 100%;
+}
+
+.video-description {
+    margin-left: 35px;
+}
+.channel-info {
+    display: flex;
+    align-items: center;
+}
+
+/*================= PLAYLIST SECTION ===============*/
+#playlist{
+
+    width: 25%;
+    position:absolute;
+    right:5%;
+    top: 10%;
+    z-index: -1;
+
+}
+
+.video-list{
+    list-style: none;
+    padding-left: 0px;
+}
+
+.playlist-title{
+    display: inline-block;
+    margin-left: 5%;
+    width: 50%;
+    vertical-align:top;
+}
+
+.playlist-title p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.thumb{
+    width: 110%;
+}
+.video-thumb-box{
+ width: 40%;
+ display: inline-block;
+ margin-bottom: 5%;
+}
+
+.playlist-title h3, h4, h5{
+    margin:0;
+    white-space: nowrap;
+}

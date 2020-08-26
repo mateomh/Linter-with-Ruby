@@ -97,3 +97,20 @@ current_file.each_with_index do |text, line|
     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space before the opening bracket\n"
   end 
 end
+
+# Type of line
+
+current_file.rewind
+current_file.each_with_index do |text, line|
+  if text.include?('/*')
+    p "Comment line"
+  elsif text.include?('{')
+    p "beginning of block"
+  elsif text.include?('}')
+    p "end of block"
+  elsif text.chomp.nil? || text.chomp.chars.all?(' ')
+    p "Empty line"
+  else
+    p "Regular line"
+  end
+end

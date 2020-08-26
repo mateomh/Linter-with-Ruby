@@ -45,4 +45,18 @@ class Lint
     msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing space before the opening bracket\n"
     @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end
+
+  def type_of_line
+    # Comment line: Type 1
+    # Beginning of block: Type 2
+    # End of block: Type 3
+    # Empty line: Type 4
+    # Regular line: Type 5
+    return 1 if text.include?('/*')
+    return 2 if text.include?('{')
+    return 3 if text.include?('}')
+    return 4 if text.chomp.nil? || text.chomp.chars.all?(' ')
+
+    5
+  end
 end

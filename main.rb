@@ -108,13 +108,13 @@ exit(0)
 
 # Checks for space between the declaration and the {
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  bracket_index = text.index('{')
-  if !bracket_index.nil? && text[bracket_index-1] != ' '
-    results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space before the opening bracket\n"
-  end 
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   bracket_index = text.index('{')
+#   if !bracket_index.nil? && text[bracket_index-1] != ' '
+#     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space before the opening bracket\n"
+#   end 
+# end
 
 # Type of line
 

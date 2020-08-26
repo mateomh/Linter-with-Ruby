@@ -3,28 +3,36 @@ class Lint
   attr_writer :curr_text, :curr_line
 
   def initialize(curr_file)
-    @report_log = File.new('.results.mm', 'w')
+    @report_log = File.new('.results.mm', 'w+')
     @current_file_name = curr_file
   end
 
+  def update_msg_header
+    @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m Line: \e[1;40m\e[1;35m #{@curr_line + 1} \e[0m ====> "
+  end
+
   def trailing_white_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Trailing whitespace detected\n"
+    update_msg_header
+    msg = @message_header + "Trailing whitespace detected\n"
     @report_log << msg if @curr_text.chomp[-1] == ' '
   end
 
   def empty_line_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Empty line detected\n"
+    update_msg_header
+    msg = @message_header + "Empty line detected\n"
     @report_log << msg if @curr_text.chomp.chars.all?(' ') || @curr_text.chomp.nil?
   end
 
   def property_space_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> No space after colon\n"
+    update_msg_header
+    msg = @message_header + "No space after colon\n"
     colon_index = @curr_text.index(':')
     @report_log << msg if !colon_index.nil? && @curr_text[colon_index + 1] != ' '
   end
 
   def colors_lowercase_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Colors should be all lower case\n"
+    update_msg_header
+    msg = @message_header + "Colors should be all lower case\n"
     pound_index = @curr_text.index('#')
     semicolon_index = @curr_text.index(';')
     color = @curr_text[pound_index...semicolon_index]
@@ -32,17 +40,20 @@ class Lint
   end
 
   def no_semicolon_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing semicolor\n"
+    update_msg_header
+    msg = @message_header + "Missing semicolor\n"
     @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
   end
 
   def comment_start_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing space between /* and content\n"
+    update_msg_header
+    msg = @message_header + "Missing space between /* and content\n"
     @report_log << msg if @curr_text.include?('/*') && !@curr_text.include?('/* ')
   end
 
   def declaration_space_linter
-    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing space before the opening bracket\n"
+    update_msg_header
+    msg = @message_header + "Missing space before the opening bracket\n"
     @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end
 
@@ -52,11 +63,19 @@ class Lint
     # End of block: Type 3
     # Empty line: Type 4
     # Regular line: Type 5
+
     return 1 if text.include?('/*')
     return 2 if text.include?('{')
     return 3 if text.include?('}')
     return 4 if text.chomp.nil? || text.chomp.chars.all?(' ')
 
     5
+  end
+
+  def report
+    @report_log.rewind
+    @report_log.each do |error|
+      puts error
+    end
   end
 end

@@ -36,7 +36,9 @@ current_file.each_with_index do |text, line|
   # linter.no_semicolon_linter
   # linter.comment_start_linter
   linter.declaration_space_linter
+  # puts "\e[1;40m \e[1;33mThis is red text \e[0m other text"
 end
+linter.report
 
 exit(0)
 

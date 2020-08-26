@@ -1,26 +1,26 @@
-File: styles.css Line: 1 ====> Missing space before the opening bracket
-File: styles.css Line: 12 ====> Missing space before the opening bracket
-File: styles.css Line: 18 ====> Missing space before the opening bracket
-File: styles.css Line: 29 ====> Missing space before the opening bracket
-File: styles.css Line: 33 ====> Missing space before the opening bracket
-File: styles.css Line: 36 ====> Missing space before the opening bracket
-File: styles.css Line: 40 ====> Missing space before the opening bracket
-File: styles.css Line: 47 ====> Missing space before the opening bracket
-File: styles.css Line: 52 ====> Missing space before the opening bracket
-File: styles.css Line: 55 ====> Missing space before the opening bracket
-File: styles.css Line: 62 ====> Missing space before the opening bracket
-File: styles.css Line: 75 ====> Missing space before the opening bracket
-File: styles.css Line: 88 ====> Missing space before the opening bracket
-File: styles.css Line: 99 ====> Missing space before the opening bracket
-File: styles.css Line: 106 ====> Missing space before the opening bracket
-File: styles.css Line: 110 ====> Missing space before the opening bracket
-File: styles.css Line: 117 ====> Missing space before the opening bracket
-File: styles.css Line: 124 ====> Missing space before the opening bracket
-File: styles.css Line: 130 ====> Missing space before the opening bracket
-File: styles.css Line: 143 ====> Missing space before the opening bracket
-File: styles.css Line: 156 ====> Missing space before the opening bracket
-File: styles.css Line: 166 ====> Missing space before the opening bracket
-File: styles.css Line: 171 ====> Missing space before the opening bracket
-File: styles.css Line: 184 ====> Missing space before the opening bracket
-File: styles.css Line: 187 ====> Missing space before the opening bracket
-File: styles.css Line: 193 ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 1 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 12 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 18 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 29 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 33 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 36 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 40 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 47 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 52 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 55 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 62 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 75 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 88 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 99 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 106 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 110 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 117 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 124 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 130 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 143 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 156 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 166 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 171 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 184 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 187 [0m ====> Missing space before the opening bracket
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 193 [0m ====> Missing space before the opening bracket

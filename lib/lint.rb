@@ -5,11 +5,29 @@ class Lint
   def initialize(curr_file)
     @report_log = File.new('.results.mm', 'w+')
     @current_file_name = curr_file
+    @empty_count = 0
+    @inside_block = false
   end
 
   def update_msg_header
     @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m "
     @message_header += "Line: \e[1;40m\e[1;35m #{@curr_line + 1} \e[0m ====> "
+  end
+
+  def set_inside_block
+    @inside_block = true
+  end
+
+  def unset_inside_block
+    @inside_block = false
+  end
+
+  def empty_count
+    @empty_count += 1
+  end
+
+  def empty_reset
+    @empty_count = 0
   end
 
   def trailing_white_linter
@@ -21,7 +39,8 @@ class Lint
   def empty_line_linter
     update_msg_header
     msg = @message_header + "Empty line detected\n"
-    @report_log << msg if @curr_text.chomp.chars.all?(' ') || @curr_text.chomp.nil?
+    @report_log << msg if (@curr_text.chomp.chars.all?(' ') || @curr_text.chomp.nil?) && @inside_block
+    @report_log << msg if !@inside_block && @empty_count > 1
   end
 
   def property_space_linter
@@ -66,12 +85,12 @@ class Lint
     # Empty line: Type 4
     # Regular line: Type 5
 
-    return 1 if text.include?('/*')
-    return 2 if text.include?('{')
-    return 3 if text.include?('}')
-    return 4 if text.chomp.nil? || text.chomp.chars.all?(' ')
+    return 'comment' if @curr_text.include?('/*')
+    return 'block start' if @curr_text.include?('{')
+    return 'block end' if @curr_text.include?('}')
+    return 'empty line' if @curr_text.chomp.nil? || @curr_text.chomp.chars.all?(' ')
 
-    5
+    'regular'
   end
 
   def report

@@ -2,7 +2,7 @@ body {
     margin: 0px;
     background-color: whitesmoke
 }
- 
+
 /*================= NAVBAR SECTION =================*/
 .flex-container {
     display: flex;
@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-content: stretch; 
 }
-
+ 
 #navbar{
     position:fixed;
     top: 0;
@@ -22,14 +22,18 @@ body {
     height: 6vmin;
     width: 100%;
     background-color: white;
-
+ 
 
 
 }
+
+
 #navbar p{
     padding: 0px;
     margin: 0px;
 }
+
+
 .logo{
     flex-basis:20%;
 }
@@ -68,8 +72,6 @@ body {
 input#search {
     width: 250px;
 }
-
-
 
 /*================= CONTENT SECTION ================*/
 #content{

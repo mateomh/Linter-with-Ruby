@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-require 'find' # Gets the find module
+require 'find' # Gets the find module to get all the files in the folder
+require './lib/lint'
 
 raise StandardError, 'Too many arguments' if ARGV.length > 1
 
@@ -19,37 +20,51 @@ end
 
 raise StandardError, 'No files to check in the folder' if css_files.empty?
 
-results_log = File.new('.results.mm', 'w')
+#results_log = File.new('.results.mm', 'w')
 current_file = File.open(css_files[0], 'r')
+
+linter = Lint.new(File.basename(current_file))
+
+current_file.each_with_index do |text, line|
+  linter.curr_text = text
+  linter.curr_line = line
+
+  linter.trailing_white_linter
+  linter.empty_line_linter
+  linter.property_space_linter
+  linter.colors_lowercase_linter
+end
+
+exit(0)
 
 # Checks for trailing white spaces
 
-current_file.each_with_index do |text, line|
-  if text.chomp[-1] == ' '
-    results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Trailing whitespace detected\n"
-  end
-end
+# current_file.each_with_index do |text, line|
+#   if text.chomp[-1] == ' '
+#     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Trailing whitespace detected\n"
+#   end
+# end
 
 # Checks for empty lines
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  if text.chomp.count(' ') == text.chomp.length || text.chomp.nil?
-    results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Empty line detected\n"
-  end
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   if text.chomp.count(' ') == text.chomp.length || text.chomp.nil?
+#     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Empty line detected\n"
+#   end
+# end
 
 # Checks for the space after the property
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  text_array = text.chomp.chars
-  if text_array.include?(':')
-    if text_array[text_array.index(':')+1] != ' '
-      results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> No space after colon\n"
-    end
-  end
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   text_array = text.chomp.chars
+#   if text_array.include?(':')
+#     if text_array[text_array.index(':')+1] != ' '
+#       results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> No space after colon\n"
+#     end
+#   end
+# end
 
 # Checks for colors lower case
 

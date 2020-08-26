@@ -2,7 +2,7 @@ body{
     margin: 0px;
     background-color: whitesmoke
 }
-
+ 
 /*================= NAVBAR SECTION =================*/
 .flex-container {
     display: flex;
@@ -42,7 +42,7 @@ body{
     text-align: center;
     width: 50%;
     flex-basis: 50%;
-    color: #334478;
+    color: #3344A8;
 }
 .searchicon{
 

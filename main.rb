@@ -29,10 +29,11 @@ current_file.each_with_index do |text, line|
   linter.curr_text = text
   linter.curr_line = line
 
-  linter.trailing_white_linter
-  linter.empty_line_linter
-  linter.property_space_linter
-  linter.colors_lowercase_linter
+  # linter.trailing_white_linter
+  # linter.empty_line_linter
+  # linter.property_space_linter
+  # linter.colors_lowercase_linter
+  linter.no_semicolon_linter
 end
 
 exit(0)
@@ -68,19 +69,19 @@ exit(0)
 
 # Checks for colors lower case
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  pound_index = text.index('#')
-  if pound_index != nil
-    semicolon_index = text.index(';')
-    if semicolon_index != nil
-      color = text[pound_index...semicolon_index]
-      if color != color.downcase
-        results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Colors should be all lower case\n"
-      end
-    end
-  end
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   pound_index = text.index('#')
+#   if pound_index != nil
+#     semicolon_index = text.index(';')
+#     if semicolon_index != nil
+#       color = text[pound_index...semicolon_index]
+#       if color != color.downcase
+#         results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Colors should be all lower case\n"
+#       end
+#     end
+#   end
+# end
 
 # Checks for semicolon missing
 

@@ -30,4 +30,9 @@ class Lint
     color = @curr_text[pound_index...semicolon_index]
     @report_log << msg if !pound_index.nil? && !semicolon_index.nil? && color != color.downcase
   end
+
+  def no_semicolon_linter
+    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing semicolor\n"
+    @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
+  end
 end

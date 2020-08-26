@@ -35,4 +35,14 @@ class Lint
     msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing semicolor\n"
     @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
   end
+
+  def comment_start_linter
+    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing space between /* and content\n"
+    @report_log << msg if @curr_text.include?('/*') && !@curr_text.include?('/* ')
+  end
+
+  def declaration_space_linter
+    msg = "File: #{@current_file_name} Line: #{@curr_line + 1} ====> Missing space before the opening bracket\n"
+    @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
+  end
 end

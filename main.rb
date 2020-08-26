@@ -33,7 +33,9 @@ current_file.each_with_index do |text, line|
   # linter.empty_line_linter
   # linter.property_space_linter
   # linter.colors_lowercase_linter
-  linter.no_semicolon_linter
+  # linter.no_semicolon_linter
+  # linter.comment_start_linter
+  linter.declaration_space_linter
 end
 
 exit(0)
@@ -85,24 +87,24 @@ exit(0)
 
 # Checks for semicolon missing
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  if text.index(';').nil? && text.index('{').nil? && text.index('}').nil?
-    if !text.chomp.chars.all?(' ')
-      results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing semicolor\n"
-    end
-  end 
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   if text.index(';').nil? && text.index('{').nil? && text.index('}').nil?
+#     if !text.chomp.chars.all?(' ')
+#       results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing semicolor\n"
+#     end
+#   end 
+# end
 
 # Checks for space between the comment start and the content
 
-current_file.rewind
-current_file.each_with_index do |text, line|
-  comment_index = text.index('/')
-  if !comment_index.nil? && text[comment_index+2] != ' '
-    results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space after between /* and content\n"
-  end 
-end
+# current_file.rewind
+# current_file.each_with_index do |text, line|
+#   comment_index = text.index('/')
+#   if !comment_index.nil? && text[comment_index+2] != ' '
+#     results_log << "File: #{File.basename(current_file)} Line: #{line+1} ====> Missing space after between /* and content\n"
+#   end 
+# end
 
 # Checks for space between the declaration and the {
 

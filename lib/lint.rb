@@ -8,7 +8,8 @@ class Lint
   end
 
   def update_msg_header
-    @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m Line: \e[1;40m\e[1;35m #{@curr_line + 1} \e[0m ====> "
+    @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m "
+    @message_header += "Line: \e[1;40m\e[1;35m #{@curr_line + 1} \e[0m ====> "
   end
 
   def trailing_white_linter
@@ -41,7 +42,7 @@ class Lint
 
   def no_semicolon_linter
     update_msg_header
-    msg = @message_header + "Missing semicolor\n"
+    msg = @message_header + "Missing semicolon\n"
     @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
   end
 
@@ -53,6 +54,7 @@ class Lint
 
   def declaration_space_linter
     update_msg_header
+    p @curr_text
     msg = @message_header + "Missing space before the opening bracket\n"
     @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end
@@ -74,6 +76,7 @@ class Lint
 
   def report
     @report_log.rewind
+    puts "\e[1;40m\e[1;32m No Errors Found - Good Job \e[0m" if @report_log.gets.nil?
     @report_log.each do |error|
       puts error
     end

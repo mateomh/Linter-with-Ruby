@@ -60,6 +60,7 @@ The linter also generates a hidden file (.results.mm) to store the log of errors
 ### How to run the linter
 To run the linter the user has to be inside the project root folder and then in the console type the following command:
 > ruby ./bin/mm_css_lint.rb {Filename}
+Where the {Filename} represents the optional parameter for for checking a single file.
 
 The linter will let you know what is going on and it has several errors that it can give.
 

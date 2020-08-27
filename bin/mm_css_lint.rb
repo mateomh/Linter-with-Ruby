@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 require 'find' # Gets the find module to get all the files in the folder
-require './lib/lint.rb'
+require_relative '../lib/lint.rb'
 
 # Checks for the number of arguments passed
 raise StandardError, 'Too many arguments' if ARGV.length > 1

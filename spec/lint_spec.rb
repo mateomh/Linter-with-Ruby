@@ -1,4 +1,4 @@
-require './lib/lint.rb'
+require_relative '../lib/lint.rb'
 
 describe Lint do
   let(:linter) { Lint.new('./test_files/test_file.css') }

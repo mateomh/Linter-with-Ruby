@@ -11,7 +11,7 @@ This project was developed as a capstone project for the Microverse Ruby Module.
 ## Built With
 
 - Ruby,
-- Rspec,
+- Rspec
 
 ## Getting Started
 

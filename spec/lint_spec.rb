@@ -137,6 +137,34 @@ describe Lint do
     expect(linter.block_end_space_linter).to eql(nil)
   end
 
+  it 'Checks the indentation linter - FINDS ERROR' do
+    linter.curr_text = ' display: block;'
+    linter.curr_line = 4
+    linter.set_inside_block
+    expect(linter.indentation_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the indentation linter - FINDS ERROR' do
+    linter.curr_text = ' display: block; '
+    linter.curr_line = 4
+    linter.set_inside_block
+    expect(linter.indentation_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the indentation linter - FINDS ERROR' do
+    linter.curr_text = '   display: block;'
+    linter.curr_line = 4
+    linter.set_inside_block
+    expect(linter.indentation_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the indentation linter - NO ERROR' do
+    linter.curr_text = '  display: block;'
+    linter.curr_line = 4
+    linter.set_inside_block
+    expect(linter.indentation_linter).to eql(nil)
+  end
+
   it 'Checks the line type method TYPE 1: Comment line' do
     linter.curr_text = '/*================= NAVBAR SECTION =================*/'
     linter.curr_line = 4

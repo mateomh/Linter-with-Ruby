@@ -64,6 +64,7 @@ css_files.each do |filename|
       linter.property_space_linter
       linter.colors_lowercase_linter
       linter.no_semicolon_linter
+      linter.indentation_linter
     end
   end
   linter.report

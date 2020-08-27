@@ -21,32 +21,15 @@ class Lint
   def run_linters(line_type)
     case line_type
     when 'comment'
-      empty_reset
-      comment_start_linter
-      comment_end_linter
-      trailing_white_linter
+      comment_run
     when 'block start'
-      empty_reset
-      set_inside_block
-      declaration_space_linter
-      trailing_white_linter
+      block_start_run
     when 'block end'
-      empty_reset
-      unset_inside_block
-      block_end_space_linter
-      trailing_white_linter
+      block_end_run
     when 'empty line'
-      empty_count
-      trailing_white_linter
-      empty_line_linter
+      empty_line_run
     when 'regular'
-      empty_reset
-      trailing_white_linter
-      empty_line_linter
-      property_space_linter
-      colors_lowercase_linter
-      no_semicolon_linter
-      indentation_linter
+      regular_run
     end
   end
 
@@ -60,6 +43,43 @@ class Lint
   end
 
   private
+
+  def comment_run
+    empty_reset
+    comment_start_linter
+    comment_end_linter
+    trailing_white_linter
+  end
+
+  def block_start_run
+    empty_reset
+    set_inside_block
+    declaration_space_linter
+    trailing_white_linter
+  end
+
+  def block_end_run
+    empty_reset
+    unset_inside_block
+    block_end_space_linter
+    trailing_white_linter
+  end
+
+  def empty_line_run
+    empty_count
+    trailing_white_linter
+    empty_line_linter
+  end
+
+  def regular_run
+    empty_reset
+    trailing_white_linter
+    empty_line_linter
+    property_space_linter
+    colors_lowercase_linter
+    no_semicolon_linter
+    indentation_linter
+  end
 
   def update_msg_header
     @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m "

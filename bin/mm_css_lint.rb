@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # rubocop:disable Metrics/BlockLength
 require 'find' # Gets the find module to get all the files in the folder
 require './lib/lint.rb'

@@ -33,7 +33,7 @@ class Lint
   def trailing_white_linter
     update_msg_header
     msg = @message_header + "Trailing whitespace detected\n"
-    @report_log << msg if @curr_text.chomp[-1] == ' '
+    return @report_log << msg if @curr_text.chomp[-1] == ' '
   end
 
   def empty_line_linter
@@ -47,7 +47,7 @@ class Lint
     update_msg_header
     msg = @message_header + "No space after colon\n"
     colon_index = @curr_text.index(':')
-    @report_log << msg if !colon_index.nil? && @curr_text[colon_index + 1] != ' '
+    return @report_log << msg if !colon_index.nil? && @curr_text[colon_index + 1] != ' '
   end
 
   def colors_lowercase_linter
@@ -56,53 +56,47 @@ class Lint
     pound_index = @curr_text.index('#')
     semicolon_index = @curr_text.index(';')
     color = @curr_text[pound_index...semicolon_index]
-    @report_log << msg if !pound_index.nil? && !semicolon_index.nil? && color != color.downcase
+    return @report_log << msg if !pound_index.nil? && !semicolon_index.nil? && color != color.downcase
   end
 
   def no_semicolon_linter
     update_msg_header
     msg = @message_header + "Missing semicolon\n"
-    @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
+    return @report_log << msg if !@curr_text.match?(/[{};]/) && !@curr_text.chomp.chars.all?(' ')
   end
 
   def comment_start_linter
     update_msg_header
     msg = @message_header + "Missing space between /* and content\n"
-    @report_log << msg if @curr_text.include?('/*') && !@curr_text.include?('/* ')
+    return @report_log << msg if @curr_text.include?('/*') && !@curr_text.include?('/* ')
   end
 
   def comment_end_linter
     update_msg_header
     msg = @message_header + "Missing space between */ and content\n"
-    @report_log << msg if @curr_text.include?('*/') && !@curr_text.include?(' */')
+    return @report_log << msg if @curr_text.include?('*/') && !@curr_text.include?(' */')
   end
 
   def declaration_space_linter
     update_msg_header
     msg = @message_header + "Missing space before the opening bracket\n"
-    @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
+    return @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end
 
   def block_end_space_linter
     update_msg_header
     msg = @message_header + "Closing bracket should not have inline spaces\n"
-    @report_log << msg if @curr_text[0].include?(' ')
+    return @report_log << msg if @curr_text[0].include?(' ')
   end
 
   def indentation_linter
     update_msg_header
     msg = @message_header + "Indentation should be 2 spaces\n"
     text_beginning = @curr_text.index(/\w/)
-    @report_log << msg if @inside_block && @curr_text[0...text_beginning].count(' ') != 2
+    return @report_log << msg if @inside_block && @curr_text[0...text_beginning].count(' ') != 2
   end
 
   def type_of_line
-    # Comment line: Type 1
-    # Beginning of block: Type 2
-    # End of block: Type 3
-    # Empty line: Type 4
-    # Regular line: Type 5
-
     return 'comment' if @curr_text.include?('/*')
     return 'block start' if @curr_text.include?('{')
     return 'block end' if @curr_text.include?('}')

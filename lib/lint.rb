@@ -4,7 +4,6 @@ class Lint
 
   def initialize(curr_file)
     @report_log = File.new('.results.mm', 'w+')
-    # @test_log = File.new('.tests.mm', 'w+')
     @current_file_name = curr_file
     @empty_count = 0
     @inside_block = false

@@ -9,6 +9,58 @@ class Lint
     @inside_block = false
   end
 
+  def type_of_line
+    return 'comment' if @curr_text.include?('/*')
+    return 'block start' if @curr_text.include?('{')
+    return 'block end' if @curr_text.include?('}')
+    return 'empty line' if @curr_text.chomp.nil? || @curr_text.chomp.chars.all?(' ')
+
+    'regular'
+  end
+
+  def run_linters(line_type)
+    case line_type
+    when 'comment'
+      empty_reset
+      comment_start_linter
+      comment_end_linter
+      trailing_white_linter
+    when 'block start'
+      empty_reset
+      set_inside_block
+      declaration_space_linter
+      trailing_white_linter
+    when 'block end'
+      empty_reset
+      unset_inside_block
+      block_end_space_linter
+      trailing_white_linter
+    when 'empty line'
+      empty_count
+      trailing_white_linter
+      empty_line_linter
+    when 'regular'
+      empty_reset
+      trailing_white_linter
+      empty_line_linter
+      property_space_linter
+      colors_lowercase_linter
+      no_semicolon_linter
+      indentation_linter
+    end
+  end
+
+  def report
+    @report_log.rewind
+    puts "\e[1;40m\e[1;36m #{@current_file_name} \e[1;32mNo Errors Found - Good Job \e[0m" if @report_log.gets.nil?
+    @report_log.each do |error|
+      puts error
+    end
+    @report_log.close
+  end
+
+  private
+
   def update_msg_header
     @message_header = "File: \e[1;40m\e[1;34m #{@current_file_name} \e[0m "
     @message_header += "Line: \e[1;40m\e[1;35m #{@curr_line + 1} \e[0m ====> "
@@ -94,55 +146,5 @@ class Lint
     msg = @message_header + "Indentation should be 2 spaces\n"
     text_beginning = @curr_text.index(/\w/)
     return @report_log << msg if @inside_block && @curr_text[0...text_beginning].count(' ') != 2
-  end
-
-  def type_of_line
-    return 'comment' if @curr_text.include?('/*')
-    return 'block start' if @curr_text.include?('{')
-    return 'block end' if @curr_text.include?('}')
-    return 'empty line' if @curr_text.chomp.nil? || @curr_text.chomp.chars.all?(' ')
-
-    'regular'
-  end
-
-  def run_linters(line_type)
-    case line_type
-    when 'comment'
-      empty_reset
-      comment_start_linter
-      comment_end_linter
-      trailing_white_linter
-    when 'block start'
-      empty_reset
-      set_inside_block
-      declaration_space_linter
-      trailing_white_linter
-    when 'block end'
-      empty_reset
-      unset_inside_block
-      block_end_space_linter
-      trailing_white_linter
-    when 'empty line'
-      empty_count
-      trailing_white_linter
-      empty_line_linter
-    when 'regular'
-      empty_reset
-      trailing_white_linter
-      empty_line_linter
-      property_space_linter
-      colors_lowercase_linter
-      no_semicolon_linter
-      indentation_linter
-    end
-  end
-
-  def report
-    @report_log.rewind
-    puts "\e[1;40m\e[1;36m #{@current_file_name} \e[1;32mNo Errors Found - Good Job \e[0m" if @report_log.gets.nil?
-    @report_log.each do |error|
-      puts error
-    end
-    @report_log.close
   end
 end

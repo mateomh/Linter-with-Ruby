@@ -2,17 +2,15 @@ require './lib/lint.rb'
 
 describe Lint do
   let(:linter) { Lint.new('./test_files/test_file.css') }
-  let(:test_white1) { '    background-color: whitesmoke ' }
-  let(:test_white2) { '    margin: 0px;' }
 
   it 'Checks the trailing white linter - FINDS AN ERROR' do
-    linter.curr_text = test_white1
+    linter.curr_text = '    background-color: whitesmoke '
     linter.curr_line = 4
     expect(linter.trailing_white_linter.is_a?(File)).to eql(true)
   end
 
   it 'Checks the trailing white linter - NO ERROR' do
-    linter.curr_text = test_white2
+    linter.curr_text = '    margin: 0px;'
     linter.curr_line = 4
     expect(linter.trailing_white_linter).to eql(nil)
   end
@@ -121,7 +119,39 @@ describe Lint do
     expect(linter.declaration_space_linter).to eql(nil)
   end
 
-  it 'Checks the line type method' do
-    
+  it 'Checks the line type method TYPE 1: Comment line' do
+    linter.curr_text = test_comment1
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('comment')
+  end
+
+  it 'Checks the line type method TYPE 2: Beginning of block line' do
+    linter.curr_text = test_bracket1
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('block start')
+  end
+
+  it 'Checks the line type method TYPE 3: End of block line' do
+    linter.curr_text = '}'
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('block end')
+  end
+
+  it 'Checks the line type method TYPE 4: Empty line - CASE 1' do
+    linter.curr_text = ''
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('empty line')
+  end
+
+  it 'Checks the line type method TYPE 4: Empty line - CASE 2' do
+    linter.curr_text = '    '
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('empty line')
+  end
+
+  it 'Checks the line type method TYPE 5: Regular line' do
+    linter.curr_text = ';'
+    linter.curr_line = 4
+    expect(linter.type_of_line).to eql('regular')
   end
 end

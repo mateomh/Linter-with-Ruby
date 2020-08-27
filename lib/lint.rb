@@ -126,7 +126,6 @@ class Lint
     update_msg_header
     msg = @message_header + "Colors should be all lower case\n"
     pound_index = @curr_text.index('#')
-    semicolon_index = @curr_text.index(';')
     color = @curr_text[pound_index...@curr_text.length]
     return @report_log << msg if !pound_index.nil? && color != color.downcase
   end

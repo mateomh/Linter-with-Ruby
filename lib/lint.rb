@@ -113,7 +113,7 @@ class Lint
 
   def report
     @report_log.rewind
-    puts "\e[1;40m\e[1;32m No Errors Found - Good Job \e[0m" if @report_log.gets.nil?
+    puts "\e[1;40m\e[1;36m #{@current_file_name} \e[1;32mNo Errors Found - Good Job \e[0m" if @report_log.gets.nil?
     @report_log.each do |error|
       puts error
     end

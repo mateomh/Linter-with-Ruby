@@ -1,25 +1,16 @@
 # rubocop:disable Metrics/BlockLength
 require 'find' # Gets the find module to get all the files in the folder
 require_relative '../lib/lint.rb'
+require_relative '../lib/check_arguments'
+include Check_arguments
 
 # Checks for the number of arguments passed
-raise StandardError, 'Too many arguments' if ARGV.length > 1
+#raise StandardError, 'Too many arguments' if ARGV.length > 1
+raise StandardError, 'Too many arguments' if check_arguments_number(ARGV)
 
-html_files = []
-css_files = []
+css_files = get_files(ARGV)
 
-if !ARGV.empty?
-  # Checks if the file name passed exists
-  raise StandardError, 'File does NOT exist' unless File.exist?(ARGV[0])
-
-  css_files.push(ARGV[0])
-else
-  # If no argument passed gets all the files in the project folder
-  Find.find('./') do |path|
-    html_files.push(File.open(path, 'r')) if File.extname(path) == '.html'
-    css_files.push(File.open(path, 'r')) if File.extname(path) == '.css'
-  end
-end
+raise StandardError, 'File does NOT exist' unless get_files(ARGV)
 
 # Checks if there are files to check
 raise StandardError, 'No files to check in the folder' if css_files.empty?

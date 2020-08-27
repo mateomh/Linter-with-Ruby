@@ -83,16 +83,28 @@ describe Lint do
     expect(linter.no_semicolon_linter).to eql(nil)
   end
 
-  it 'Checks the comment linter - FINDS ERROR' do
+  it 'Checks the comment start linter - FINDS ERROR' do
     linter.curr_text = '/*================= NAVBAR SECTION =================*/'
     linter.curr_line = 4
     expect(linter.comment_start_linter.is_a?(File)).to eql(true)
   end
 
-  it 'Checks the comment linter - NO ERROR' do
+  it 'Checks the comment start linter - NO ERROR' do
     linter.curr_text = '/* ================= CONTENT SECTION ================ */'
     linter.curr_line = 4
     expect(linter.comment_start_linter).to eql(nil)
+  end
+
+  it 'Checks the comment end linter - FINDS ERROR' do
+    linter.curr_text = '/*================= NAVBAR SECTION =================*/'
+    linter.curr_line = 4
+    expect(linter.comment_end_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the comment end linter - NO ERROR' do
+    linter.curr_text = '/* ================= CONTENT SECTION ================ */'
+    linter.curr_line = 4
+    expect(linter.comment_end_linter).to eql(nil)
   end
 
   it 'Checks the declaration bracket linter - FINDS ERROR' do

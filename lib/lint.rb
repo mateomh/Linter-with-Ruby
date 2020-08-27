@@ -83,6 +83,12 @@ class Lint
     @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end
 
+  def block_end_space_linter
+    update_msg_header
+    msg = @message_header + "Closing bracket should not have inline spaces\n"
+    @report_log << msg if @curr_text[0].include?(' ')
+  end
+
   def type_of_line
     # Comment line: Type 1
     # Beginning of block: Type 2

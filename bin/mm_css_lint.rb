@@ -43,7 +43,7 @@ css_files.each do |filename|
     when 'block end'
       linter.empty_reset
       linter.unset_inside_block
-      # closing block linter
+      linter.block_end_space_linter
       linter.trailing_white_linter
     when 'empty line'
       linter.empty_count

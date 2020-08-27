@@ -106,4 +106,22 @@ describe Lint do
     linter.curr_line = 4
     expect(linter.comment_start_linter).to eql(nil)
   end
+
+  let(:test_bracket1) { '#content{' }
+  let(:test_bracket2) { 'input#search {' }
+  it 'Checks the declaration bracket linter - FINDS ERROR' do
+    linter.curr_text = test_bracket1
+    linter.curr_line = 4
+    expect(linter.declaration_space_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the declaration bracket linter - NO ERROR' do
+    linter.curr_text = test_bracket2
+    linter.curr_line = 4
+    expect(linter.declaration_space_linter).to eql(nil)
+  end
+
+  it 'Checks the line type method' do
+    
+  end
 end

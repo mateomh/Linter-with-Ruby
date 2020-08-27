@@ -71,6 +71,12 @@ class Lint
     @report_log << msg if @curr_text.include?('/*') && !@curr_text.include?('/* ')
   end
 
+  def comment_end_linter
+    update_msg_header
+    msg = @message_header + "Missing space between */ and content\n"
+    @report_log << msg if @curr_text.include?('*/') && !@curr_text.include?(' */')
+  end
+
   def declaration_space_linter
     update_msg_header
     msg = @message_header + "Missing space before the opening bracket\n"

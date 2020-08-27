@@ -31,6 +31,7 @@ File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 66 [0m ====> Missing 
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 68 [0m ====> No space after colon
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 69 [0m ====> No space after colon
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 76 [0m ====> Missing space between /* and content
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 76 [0m ====> Missing space between */ and content
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 77 [0m ====> Missing space before the opening bracket
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 78 [0m ====> Empty line detected
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 79 [0m ====> No space after colon
@@ -54,6 +55,7 @@ File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 128 [0m ====> No spac
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 132 [0m ====> Missing space before the opening bracket
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 145 [0m ====> Missing space before the opening bracket
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 157 [0m ====> Missing space between /* and content
+File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 157 [0m ====> Missing space between */ and content
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 158 [0m ====> Missing space before the opening bracket
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 159 [0m ====> Empty line detected
 File: [1;40m[1;34m styles.css [0m Line: [1;40m[1;35m 161 [0m ====> No space after colon

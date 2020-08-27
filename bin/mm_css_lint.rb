@@ -33,6 +33,7 @@ css_files.each do |filename|
     when 'comment'
       linter.empty_reset
       linter.comment_start_linter
+      linter.comment_end_linter
       linter.trailing_white_linter
     when 'block start'
       linter.empty_reset

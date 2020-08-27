@@ -78,4 +78,18 @@ describe Lint do
     linter.curr_line = 4
     expect(linter.colors_lowercase_linter).to eql(nil)
   end
+
+  let(:test_semicol1) { 'background-color: whitesmoke ' }
+  let(:test_semicol2) { 'max-width: 10vmin;' }
+  it 'Checks the color linter - FINDS ERROR' do
+    linter.curr_text = test_semicol1
+    linter.curr_line = 4
+    expect(linter.no_semicolon_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the color linter - NO ERROR' do
+    linter.curr_text = test_semicol2
+    linter.curr_line = 4
+    expect(linter.no_semicolon_linter).to eql(nil)
+  end
 end

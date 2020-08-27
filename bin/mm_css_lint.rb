@@ -1,15 +1,15 @@
 # rubocop:disable Metrics/BlockLength
 require 'find' # Gets the find module to get all the files in the folder
 require_relative '../lib/lint.rb'
-require_relative '../lib/check_arguments'
-include Check_arguments
+require_relative '../lib/checks.rb'
+include Checks
 
 # Checks for the number of arguments passed
-#raise StandardError, 'Too many arguments' if ARGV.length > 1
 raise StandardError, 'Too many arguments' if check_arguments_number(ARGV)
 
 css_files = get_files(ARGV)
 
+# Checks if the file passed exists
 raise StandardError, 'File does NOT exist' unless get_files(ARGV)
 
 # Checks if there are files to check
@@ -27,35 +27,7 @@ css_files.each do |filename|
     linter.curr_line = line
     line_type = linter.type_of_line
     # Calls the linters acording to the type of line
-    case line_type
-    when 'comment'
-      linter.empty_reset
-      linter.comment_start_linter
-      linter.comment_end_linter
-      linter.trailing_white_linter
-    when 'block start'
-      linter.empty_reset
-      linter.set_inside_block
-      linter.declaration_space_linter
-      linter.trailing_white_linter
-    when 'block end'
-      linter.empty_reset
-      linter.unset_inside_block
-      linter.block_end_space_linter
-      linter.trailing_white_linter
-    when 'empty line'
-      linter.empty_count
-      linter.trailing_white_linter
-      linter.empty_line_linter
-    when 'regular'
-      linter.empty_reset
-      linter.trailing_white_linter
-      linter.empty_line_linter
-      linter.property_space_linter
-      linter.colors_lowercase_linter
-      linter.no_semicolon_linter
-      linter.indentation_linter
-    end
+    linter.run_linters(line_type)
   end
   linter.report
 end

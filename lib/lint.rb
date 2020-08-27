@@ -105,6 +105,38 @@ class Lint
     'regular'
   end
 
+  def run_linters(line_type)
+    case line_type
+    when 'comment'
+      empty_reset
+      comment_start_linter
+      comment_end_linter
+      trailing_white_linter
+    when 'block start'
+      empty_reset
+      set_inside_block
+      declaration_space_linter
+      trailing_white_linter
+    when 'block end'
+      empty_reset
+      unset_inside_block
+      block_end_space_linter
+      trailing_white_linter
+    when 'empty line'
+      empty_count
+      trailing_white_linter
+      empty_line_linter
+    when 'regular'
+      empty_reset
+      trailing_white_linter
+      empty_line_linter
+      property_space_linter
+      colors_lowercase_linter
+      no_semicolon_linter
+      indentation_linter
+    end
+  end
+
   def report
     @report_log.rewind
     puts "\e[1;40m\e[1;36m #{@current_file_name} \e[1;32mNo Errors Found - Good Job \e[0m" if @report_log.gets.nil?

@@ -1,4 +1,4 @@
-module Check_arguments
+module Checks
   def check_arguments_number(args)
     return true if args.length > 1
     false

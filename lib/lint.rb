@@ -4,7 +4,7 @@ class Lint
 
   def initialize(curr_file)
     @report_log = File.new('.results.mm', 'w+')
-    @test_log = File.new('.tests.mm', 'w+')
+    # @test_log = File.new('.tests.mm', 'w+')
     @current_file_name = curr_file
     @empty_count = 0
     @inside_block = false
@@ -99,5 +99,6 @@ class Lint
     @report_log.each do |error|
       puts error
     end
+    @report_log.close
   end
 end

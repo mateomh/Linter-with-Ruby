@@ -81,15 +81,29 @@ describe Lint do
 
   let(:test_semicol1) { 'background-color: whitesmoke ' }
   let(:test_semicol2) { 'max-width: 10vmin;' }
-  it 'Checks the color linter - FINDS ERROR' do
+  it 'Checks the semicolon linter - FINDS ERROR' do
     linter.curr_text = test_semicol1
     linter.curr_line = 4
     expect(linter.no_semicolon_linter.is_a?(File)).to eql(true)
   end
 
-  it 'Checks the color linter - NO ERROR' do
+  it 'Checks the semicolon linter - NO ERROR' do
     linter.curr_text = test_semicol2
     linter.curr_line = 4
     expect(linter.no_semicolon_linter).to eql(nil)
+  end
+
+  let(:test_comment1) { '/*================= NAVBAR SECTION =================*/' }
+  let(:test_comment2) { '/* ================= CONTENT SECTION ================ */' }
+  it 'Checks the comment linter - FINDS ERROR' do
+    linter.curr_text = test_comment1
+    linter.curr_line = 4
+    expect(linter.comment_start_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the comment linter - NO ERROR' do
+    linter.curr_text = test_comment2
+    linter.curr_line = 4
+    expect(linter.comment_start_linter).to eql(nil)
   end
 end

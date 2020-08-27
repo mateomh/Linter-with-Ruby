@@ -74,7 +74,6 @@ class Lint
 
   def declaration_space_linter
     update_msg_header
-    p @curr_text
     msg = @message_header + "Missing space before the opening bracket\n"
     @report_log << msg if @curr_text.include?('{') && !@curr_text.include?(' {')
   end

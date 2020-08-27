@@ -28,7 +28,7 @@ describe Lint do
   end
 
   it 'Checks the empty line linter outside block - NO ERROR' do
-    linter.curr_text = test_empty2
+    linter.curr_text = test_empty1
     linter.curr_line = 4
     linter.unset_inside_block
     linter.empty_count = 1
@@ -49,5 +49,19 @@ describe Lint do
     linter.set_inside_block
     linter.empty_count = 0
     expect(linter.empty_line_linter).to eql(nil)
+  end
+
+  let(:test_colon1) { '    position:fixed;' }
+  let(:test_colon2) { 'background-color: white;' }
+  it 'Checks the colon space linter - FINDS ERROR' do
+    linter.curr_text = test_colon1
+    linter.curr_line = 4
+    expect(linter.property_space_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the colon space linter - NO ERROR' do
+    linter.curr_text = test_colon2
+    linter.curr_line = 4
+    expect(linter.property_space_linter).to eql(nil)
   end
 end

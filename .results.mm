@@ -1,2 +1,2 @@
-File: [1;40m[1;34m ./test_files/test_file.css [0m Line: [1;40m[1;35m 5 [0m ====> Empty line detected
-detected
+File: [1;40m[1;34m ./test_files/test_file.css [0m Line: [1;40m[1;35m 5 [0m ====> No space after colon
+etected

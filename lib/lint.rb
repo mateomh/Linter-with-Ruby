@@ -92,7 +92,7 @@ class Lint
   def indentation_linter
     update_msg_header
     msg = @message_header + "Indentation should be 2 spaces\n"
-    text_beginning=@curr_text.index(/\w/)
+    text_beginning = @curr_text.index(/\w/)
     @report_log << msg if @inside_block && @curr_text[0...text_beginning].count(' ') != 2
   end
 

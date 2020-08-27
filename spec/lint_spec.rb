@@ -60,7 +60,7 @@ describe Lint do
   end
 
   it 'Checks the color linter - FINDS ERROR' do
-    linter.curr_text = 'color: #3344A8;'
+    linter.curr_text = 'color: #3344A8    '
     linter.curr_line = 4
     expect(linter.send(:colors_lowercase_linter).is_a?(File)).to eql(true)
   end

@@ -119,6 +119,24 @@ describe Lint do
     expect(linter.declaration_space_linter).to eql(nil)
   end
 
+  it 'Checks closing block space linter - FINDS ERROR' do
+    linter.curr_text = '   }'
+    linter.curr_line = 4
+    expect(linter.block_end_space_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks closing block space linter - NO ERROR' do
+    linter.curr_text = '}'
+    linter.curr_line = 4
+    expect(linter.block_end_space_linter).to eql(nil)
+  end
+
+  it 'Checks closing block space linter - NO ERROR' do
+    linter.curr_text = '} '
+    linter.curr_line = 4
+    expect(linter.block_end_space_linter).to eql(nil)
+  end
+
   it 'Checks the line type method TYPE 1: Comment line' do
     linter.curr_text = '/*================= NAVBAR SECTION =================*/'
     linter.curr_line = 4

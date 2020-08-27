@@ -1,9 +1,10 @@
 class Lint
   attr_reader :report_log, :current_file_name
-  attr_writer :curr_text, :curr_line
+  attr_writer :curr_text, :curr_line, :empty_count
 
   def initialize(curr_file)
     @report_log = File.new('.results.mm', 'w+')
+    @test_log = File.new('.tests.mm', 'w+')
     @current_file_name = curr_file
     @empty_count = 0
     @inside_block = false
@@ -39,8 +40,8 @@ class Lint
   def empty_line_linter
     update_msg_header
     msg = @message_header + "Empty line detected\n"
-    @report_log << msg if (@curr_text.chomp.chars.all?(' ') || @curr_text.chomp.nil?) && @inside_block
-    @report_log << msg if !@inside_block && @empty_count > 1
+    return @report_log << msg if (@curr_text.chomp.chars.all?(' ') || @curr_text.chomp.nil?) && @inside_block
+    return @report_log << msg if !@inside_block && @empty_count != 1
   end
 
   def property_space_linter

@@ -4,7 +4,7 @@ describe Lint do
   let(:linter) { Lint.new('./test_files/test_file.css') }
   let(:test_white1) { '    background-color: whitesmoke ' }
   let(:test_white2) { '    margin: 0px;' }
-  
+
   it 'Checks the trailing white linter - FINDS AN ERROR' do
     linter.curr_text = test_white1
     linter.curr_line = 4
@@ -63,5 +63,19 @@ describe Lint do
     linter.curr_text = test_colon2
     linter.curr_line = 4
     expect(linter.property_space_linter).to eql(nil)
+  end
+
+  let(:test_color1) { 'color: #3344A8;' }
+  let(:test_color2) { 'color: #3344a8;' }
+  it 'Checks the color linter - FINDS ERROR' do
+    linter.curr_text = test_color1
+    linter.curr_line = 4
+    expect(linter.colors_lowercase_linter.is_a?(File)).to eql(true)
+  end
+
+  it 'Checks the color linter - NO ERROR' do
+    linter.curr_text = test_color2
+    linter.curr_line = 4
+    expect(linter.colors_lowercase_linter).to eql(nil)
   end
 end
